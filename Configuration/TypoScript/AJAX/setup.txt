@@ -1,1 +1,0 @@
-page.includeJSFooter.in2snippets_ajax_js = EXT:in2snippets/Resources/Public/JS/in2snippets_ajax.js
