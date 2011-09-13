@@ -1,0 +1,51 @@
+{namespace snippetHelper=Tx_In2snippets_ViewHelpers}
+<f:layout name="Default" />
+
+Template for List Output
+{snippets} Object of all snippets (filtered by param)
+{categories} Object of all categories with snippets (filtered by param)
+
+<f:section name="main">
+	<div class="in2snippets_list">
+		<div class="in2snippets_flashmessages">
+			<f:flashMessages />
+		</div>
+		
+		<f:if condition="{snippets.0.title}">
+			<f:then>
+				<div class="in2snippets_list_items">
+					<ul class="in2snippets_list_firstul">
+						<f:for each="{categories}" as="category">
+
+							<f:if condition="{category.snippet}">
+								<f:then>
+									<li class="in2snippets_list_firstli">
+										<div class="in2snippets_list_firstli_header">
+											<div class="in2snippets_list_firstli_header_cattype in2snippets_list_firstli_header_cattype_{category.title}"><snippetHelper:MarkTerm string="{category.title}" /></div>
+										</div>
+										<div class="in2snippets_list_secondul_wrapper">
+											<ul class="in2snippets_list_secondul">
+												<f:for each="{category.snippet}" as="snippet">
+													<li class="in2snippets_list_secondli">
+														<f:link.action arguments="{snippet : snippet}" action="detail">
+															<snippetHelper:MarkTerm string="{snippet.title}" />
+														</f:link.action>
+													</li>
+												</f:for>
+											</ul>
+										</div>
+									</li>
+								</f:then>
+							</f:if>
+						</f:for>
+					</ul>
+				</div>	
+			</f:then>
+			<f:else>
+				<div class="in2snippets_list_noitems">
+					<f:translate key="tx_in2snippets_list_error_nothingfound" />
+				</div>
+			</f:else>
+		</f:if>
+	</div>
+</f:section>
