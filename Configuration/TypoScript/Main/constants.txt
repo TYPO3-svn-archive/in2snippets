@@ -1,0 +1,42 @@
+plugin.tx_in2snippets {
+	view {
+		# cat=plugin.tx_in2snippets/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:in2snippets/Resources/Private/Templates/
+		# cat=plugin.tx_in2snippets/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:in2snippets/Resources/Private/Partials/
+		# cat=plugin.tx_in2snippets/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:in2snippets/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_in2snippets//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+	settings {
+		# cat=plugin.tx_in2snippets//0100; type=text; label=Baseurl: Baseurl used for Twitter and Facebook share
+		baseurl = http://datest.in2code.de/
+
+		# cat=plugin.tx_in2snippets//0100; type=int+; label=PID list: PageID for list-plugin
+		pid.list = 3
+
+		# cat=plugin.tx_in2snippets//0110; type=int+; label=PID detail: PageID for detail-plugin
+		pid.detail = 3
+
+		# cat=plugin.tx_in2snippets//0300; type=string; label=TipAFriend SenderEmail: Sender Email for tipafriend form
+		tipafriend.senderEmail = info@in2code.de
+
+		# cat=plugin.tx_in2snippets//0310; type=string; label=TipAFriend SenderName: Sender Name for tipafriend form
+		tipafriend.senderName = in2snippets
+
+		# cat=plugin.tx_in2snippets//0320; type=string; label=TipAFriend Subject: Subject for tipafriend email
+		tipafriend.subject = A Friend of you sent you a Snippet-Link!
+
+		# cat=plugin.tx_in2snippets//0330; type=string; label=TipAFriend TemplateName: Template Name for Email-Template
+		tipafriend.templateName = Mail
+
+		# cat=plugin.tx_in2snippets//0340; type=string; label=TipAFriend Subject: Subject for tipafriend confirmation-email
+		tipafriend.subjectConf = Your Snippet-Link was sent!
+
+		# cat=plugin.tx_in2snippets//0350; type=string; label=TipAFriend TemplateName: Template Name for Email-Template of onfirmation-email
+		tipafriend.templateNameConf = MailConf
+	}
+}

@@ -1,0 +1,21 @@
+<f:layout name="Default" />
+
+Template for Search Output
+
+<f:section name="main">
+	<div class="in2snippets_search">
+		<div class="in2snippets_flashmessages">
+			<f:flashMessages />
+		</div>
+
+		<f:form class="in2snippets_search_form" action="list" >
+			<f:form.textfield class="in2snippets_search_form_textfield" name="snippetSearch" value="" />
+			<f:form.submit class="in2snippets_search_form_submit" value="{f:translate(key: 'tx_in2snippets_form_submit')}" />
+			<f:form.hidden id="in2snippets_container_pid" name="in2snippets_container_pid" value="{pid}" />
+		</f:form>
+
+		<a href="#" class="backtocat" title="{f:translate(key:'backtocat')}">
+			<f:translate key="backtocat" />
+		</a>
+	</div>
+</f:section>

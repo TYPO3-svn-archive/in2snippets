@@ -1,0 +1,17 @@
+<f:layout name="Default" />
+
+Template for List Output
+
+<f:section name="main">
+	<div class="in2snippets_comment_new">
+		<div class="in2snippets_flashmessages">
+			<f:flashMessages />
+		</div>
+		<f:form action="create" class="in2snippets_comment_new_form" name="newComment" object="{newComment}">
+			<div class="in2snippets_comment_new_form_name"><f:translate key="tx_in2snippets_name" />: <f:form.textfield property="creator" required="1" /></div>
+			<div class="in2snippets_comment_new_form_comment"><f:translate key="tx_in2snippets_comment" />: <f:form.textarea rows="10" cols="70" class="in2snippets_comment_new_form_textarea" property="text" />
+			<f:form.hidden name="snippet" value="{snippet}" />
+			<f:form.submit value="{f:translate(key: 'tx_in2snippets_form_submit')}" />
+		</f:form>
+	</div>
+</f:section>
