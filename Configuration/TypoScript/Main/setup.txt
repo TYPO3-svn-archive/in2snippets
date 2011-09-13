@@ -1,0 +1,87 @@
+plugin.tx_in2snippets {
+	view {
+		templateRootPath = {$plugin.tx_in2snippets.view.templateRootPath}
+		partialRootPath = {$plugin.tx_in2snippets.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_in2snippets.view.layoutRootPath}
+	}
+	
+	persistence {
+	enableAutomaticCacheClearing = 1
+    updateReferenceIndex = 0
+
+		storagePid = {$plugin.tx_in2snippets.persistence.storagePid}
+		classes {
+			Tx_In2snippets_Domain_Model_User {
+				mapping {
+					tableName = be_users
+					recordType = Tx_In2snippets_Domain_Model_User
+					columns {
+						username.mapOnProperty = username
+						name.mapOnProperty = name
+						uid.mapOnProperty = uid
+					}
+				}
+			}
+		}
+	}
+	
+	settings {
+		pid {
+			list = {$plugin.tx_in2snippets.settings.pid.list}
+			detail = {$plugin.tx_in2snippets.settings.pid.detail}
+		}
+		
+		rss {
+			title = {$plugin.tx_in2snippets.settings.rss.title}
+			baseurl = {$plugin.tx_in2snippets.settings.rss.baseurl}
+			description = {$plugin.tx_in2snippets.settings.rss.description}
+			language = {$plugin.tx_in2snippets.settings.rss.language}
+		}
+
+		tipafriend {
+			### Normal mail ###
+			senderEmail = {$plugin.tx_in2snippets.settings.tipafriend.senderEmail}
+			senderName = {$plugin.tx_in2snippets.settings.tipafriend.senderName}
+			subject = {$plugin.tx_in2snippets.settings.tipafriend.subject}
+			templateName = {$plugin.tx_in2snippets.settings.tipafriend.templateName}
+			### Confirmation mail ###
+			subjectConf = {$plugin.tx_in2snippets.settings.tipafriend.subjectConf}
+			templateNameConf = {$plugin.tx_in2snippets.settings.tipafriend.templateNameConf}
+		}
+		
+		staticTemplate = 1
+	}
+}
+
+page {
+	#include external jQuery
+	includeJSFooter.jQuery_162_min = http://code.jquery.com/jquery-1.6.2.min.js
+	includeJSFooter.jQuery_162_min.external = 1
+
+	#include SyntaxHighlighter files
+	#includeJSFooter.in2snippets_syntaxhighlighter_beatyofcode = EXT:in2snippets/Resources/Public/Tools/SyntaxHighlighter/jquery.beautyOfCode.js
+	includeJSFooter.in2snippets_syntaxhighlighter_beatyofcode_min = EXT:in2snippets/Resources/Public/Tools/SyntaxHighlighter/jquery.beautyOfCode-min.js
+
+	#include default extension files
+	includeJSFooter.in2snippets_default_essential_js = EXT:in2snippets/Resources/Public/JS/in2snippets_essential.js
+}
+
+lib.detailLink = COA
+lib.detailLink {
+	rawUrlEncode = 0
+	
+	10 = TEXT
+	10 {
+		value = {$plugin.tx_in2snippets.settings.baseurl}
+		wrap = |
+	}
+
+	20 = TEXT
+	20 {
+		typolink.parameter = {$plugin.tx_in2snippets.settings.pid.detail}
+		typolink.returnLast = url
+		typolink.additionalParams.cObject = TEXT
+		typolink.additionalParams.cObject.wrap = &tx_in2snippets_pi1[snippet]=|&tx_in2snippets_pi1[action]=detail
+		typolink.additionalParams.cObject.field = uid
+	}
+}
