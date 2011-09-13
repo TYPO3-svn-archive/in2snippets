@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
 
 		if ($('code').length > 0) {
 			$.beautyOfCode.init({
-				brushes: ['Xml', 'Sql', 'JScript', 'Plain', 'Php'],
+				brushes: ['Css', 'Xml', 'Sql', 'JScript', 'Plain', 'Php'],
 				ready: function() {
 					$.beautyOfCode.beautifyAll();
 					$('.someCode').beautifyCode('javascript', {gutter:false});

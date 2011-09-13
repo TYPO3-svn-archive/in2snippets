@@ -150,6 +150,7 @@ div.in2snippets_detail_snippet_codetype_jquery,
 div.in2snippets_detail_snippet_codetype_typoscript,
 div.in2snippets_detail_snippet_codetype_plain,
 div.in2snippets_detail_snippet_codetype_sql,
+div.in2snippets_detail_snippet_codetype_css,
 div.in2snippets_list_firstli_header_cattype,
 div.in2snippets_detail_snippet_comment_headinfo {
 	height: 50px;
@@ -177,6 +178,9 @@ div.in2snippets_detail_snippet_codetype_plain {
 }
 div.in2snippets_detail_snippet_codetype_sql {
 	background: url('../Icons/icons.png') no-repeat -1785px -20px;
+}
+div.in2snippets_detail_snippet_codetype_css {
+	background: url('../Icons/icons.png') no-repeat 20px -18px;
 }
 
 div.in2snippets_detail_snippet_options {

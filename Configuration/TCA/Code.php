@@ -107,6 +107,7 @@ $TCA['tx_in2snippets_domain_model_code'] = array(
 					array('TypoScript', 'typoscript'),
 					array('MySQL', 'sql'),
 					array('Plain', 'plain'),
+					array('CSS', 'css'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
