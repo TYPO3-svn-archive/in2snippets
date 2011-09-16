@@ -48,6 +48,13 @@ plugin.tx_in2snippets {
 			subjectConf = {$plugin.tx_in2snippets.settings.tipafriend.subjectConf}
 			templateNameConf = {$plugin.tx_in2snippets.settings.tipafriend.templateNameConf}
 		}
+
+		commentNotification {
+			senderEmail = {$plugin.tx_in2snippets.settings.commentNotification.senderEmail}
+			senderName = {$plugin.tx_in2snippets.settings.commentNotification.senderName}
+			subject = {$plugin.tx_in2snippets.settings.commentNotification.subject}
+			templateName = {$plugin.tx_in2snippets.settings.commentNotification.templateName}
+		}
 		
 		staticTemplate = 1
 	}

@@ -39,9 +39,6 @@ class Tx_In2snippets_Controller_CommentController extends Tx_Extbase_MVC_Control
 	 * @var Tx_In2snippets_Domain_Repository_SnippetRepository $snippetRepository
 	 */
 	protected $snippetRepository;
-	
-	public function initializeAction(){
-	}	
 
 	/**
 	 * action new
@@ -74,7 +71,32 @@ class Tx_In2snippets_Controller_CommentController extends Tx_Extbase_MVC_Control
 				$this->redirect('detail', 'Snippet', NULL, array('snippet' => $snippet));
 			}
 		} else { // all ok
+			$snippet_creator = $this->snippetRepository->getBeNameFromSnippetId($snippet->getUid());
+			$mail_rec = $snippet_creator['email'];
+			if ($mail_rec) {
+				//Sending comment-notification to snippet creator
+				$this->utility = t3lib_div::makeInstance('Tx_In2snippets_Utility_Utility');
+				$this->utility->sendTemplateEmail(
+					array(
+						$mail_rec => 'Recipient Name'
+					),
+					array(
+						$this->settings['commentNotification']['senderEmail'] => $this->settings['commentNotification']['senderName'],
+					),
+					$this->settings['commentNotification']['subject'],
+					$this->settings['commentNotification']['templateName'],
+					$this->objectManager,
+					$this->configurationManager,
+					array(
+						'creator' => $newComment->getCreator(),
+						'text' => $newComment->getText(),
+						'www' => $newComment->getWww(),
+						'snippet' => $snippet,
+					)
+				);
+			}
 			$snippet->addComment($newComment);
+			
 			if (!t3lib_div::_GP('eID')) { // called classic
 				$this->flashMessageContainer->add('Your new Comment was created.');
 				$this->redirect('detail', 'Snippet', NULL, array('snippet' => $snippet));
@@ -83,11 +105,19 @@ class Tx_In2snippets_Controller_CommentController extends Tx_Extbase_MVC_Control
 	}
 	
 	/**
-	 *
+	 * 
 	 * @param Tx_In2snippets_Domain_Repository_SnippetRepository $snippetRepository 
 	 */
 	public function injectSnippetRepository(Tx_In2snippets_Domain_Repository_SnippetRepository $snippetRepository) {
 		$this->snippetRepository = $snippetRepository;
+	}
+	
+	/**
+	 * 
+	 * @param Tx_In2snippets_Utility_Utility $utility 
+	 */
+	public function injectUtility(Tx_In2snippets_Utility_Utility $utility) {
+		$this->utility = $utility;
 	}
 }
 

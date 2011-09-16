@@ -154,7 +154,7 @@ class Tx_In2snippets_Domain_Repository_SnippetRepository extends Tx_Extbase_Pers
 	public function getBeNameFromSnippetId($snippetId) {
 		$query = $this->createQuery();
 		$sql = '
-			select be_users.realName, be_users.username
+			select be_users.realName, be_users.username, be_users.email
 			from
 				tx_in2snippets_domain_model_snippet
 				LEFT JOIN be_users ON tx_in2snippets_domain_model_snippet.cruser_id = be_users.uid

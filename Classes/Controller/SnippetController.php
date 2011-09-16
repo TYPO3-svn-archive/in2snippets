@@ -147,8 +147,9 @@ class Tx_In2snippets_Controller_SnippetController extends Tx_Extbase_MVC_Control
 				$this->redirect('detail', 'Snippet', NULL, array('snippet' => $snippet));
 			}
 		} else {
+			$this->utility = t3lib_div::makeInstance('Tx_In2snippets_Utility_Utility');			
 			//Sending Tip to Tip-Recipient
-			$this->sendTemplateEmail(
+			$this->utility->sendTemplateEmail(
 				array(
 					$mail_rec => 'Recipient Name'
 				),
@@ -157,6 +158,8 @@ class Tx_In2snippets_Controller_SnippetController extends Tx_Extbase_MVC_Control
 				),
 				$this->settings['tipafriend']['subject'],
 				$this->settings['tipafriend']['templateName'],
+				$this->objectManager,
+				$this->configurationManager,
 				array(
 					'text' => $this->piVars['text'],
 					'email' => $this->piVars['mail'],
@@ -166,7 +169,7 @@ class Tx_In2snippets_Controller_SnippetController extends Tx_Extbase_MVC_Control
 			);
 
 			//Sending Confirmation to Sender
-			$this->sendTemplateEmail(
+			$this->utility->sendTemplateEmail(
 				array(
 					$this->piVars['mailOwn'] => 'Recipient Name'
 				),
@@ -175,6 +178,8 @@ class Tx_In2snippets_Controller_SnippetController extends Tx_Extbase_MVC_Control
 				),
 				$this->settings['tipafriend']['subjectConf'],
 				$this->settings['tipafriend']['templateNameConf'],
+				$this->objectManager,
+				$this->configurationManager,
 				array(
 					'text' => $this->piVars['text'],
 					'email' => $this->piVars['mail'],
@@ -182,46 +187,11 @@ class Tx_In2snippets_Controller_SnippetController extends Tx_Extbase_MVC_Control
 					'snippet' => $snippet
 				)
 			);
-
 			if (!t3lib_div::_GP('eID')) { // called classic
 				$this->flashMessageContainer->add('Your tip was sent!');
 				$this->redirect('detail', 'Snippet', NULL, array('snippet' => $snippet));
 			}
 		}
-	}
-	
-	/**
-	 * This is the main-function for sending the Email
-	 * 
-	 * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
-	 * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
-	 * @param string $subject subject of the email
-	 * @param string $templateName template name (UpperCamelCase)
-	 * @param array $variables variables to be passed to the Fluid view
-	 * @return boolean TRUE on success, otherwise false
-	 */
-	protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
-		$emailView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
-		$emailView->setFormat('html');
-		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		$templateRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
-		$templatePathAndFilename = $templateRootPath . 'Snippet/' . $templateName . '.html';
-		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
-		$emailView->assignMultiple($variables);
-		$emailBody = $emailView->render();
-		$message = t3lib_div::makeInstance('t3lib_mail_Message');
-		$message->setTo($recipient)
-		   ->setFrom($sender)
-		   ->setSubject($subject);
-
-		// Plain text example
-		$message->setBody($emailBody, 'text/plain');
-
-		// HTML Email
-		$message->setBody($emailBody, 'text/html');
-		
-		$message->send();
-		return $message->isSent();
 	}
 	
 	/**

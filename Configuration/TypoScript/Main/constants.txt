@@ -31,12 +31,24 @@ plugin.tx_in2snippets {
 		tipafriend.subject = A Friend of you sent you a Snippet-Link!
 
 		# cat=plugin.tx_in2snippets//0330; type=string; label=TipAFriend TemplateName: Template Name for Email-Template
-		tipafriend.templateName = Mail
+		tipafriend.templateName = Snippet/Mail
 
 		# cat=plugin.tx_in2snippets//0340; type=string; label=TipAFriend Subject: Subject for tipafriend confirmation-email
 		tipafriend.subjectConf = Your Snippet-Link was sent!
 
-		# cat=plugin.tx_in2snippets//0350; type=string; label=TipAFriend TemplateName: Template Name for Email-Template of onfirmation-email
-		tipafriend.templateNameConf = MailConf
+		# cat=plugin.tx_in2snippets//0350; type=string; label=TipAFriend TemplateName: Template Name for Email-Template of confirmation-email
+		tipafriend.templateNameConf = Snippet/MailConf
+
+		# cat=plugin.tx_in2snippets//0400; type=string; label=CommentNotification SenderEmail: Sender email for comment-notification form
+		commentNotification.senderEmail = info@in2code.de
+
+		# cat=plugin.tx_in2snippets//0410; type=string; label=CommentNotification SenderName: Sender name for comment-notification form
+		commentNotification.senderName = in2snippets
+
+		# cat=plugin.tx_in2snippets//0420; type=string; label=CommentNotification Subject: Subject for comment-notification email
+		commentNotification.subject = Someone commented on your Snippet!
+
+		# cat=plugin.tx_in2snippets//0430; type=string; label=CommentNotification TemplateName: Template name for comment-notification-template
+		commentNotification.templateName = Comment/NotificationMail
 	}
 }
