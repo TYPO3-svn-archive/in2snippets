@@ -7,14 +7,21 @@ jQuery(document).ready(function() {
 		$('.in2snippets_search_form_textfield').focus();
 	}, (500) );
 	
-	$('.in2snippets_search_form_textfield').keydown(function(){
-		
+	// deleting the default value in searchform input when a key is pressed or clicked
+	$('.in2snippets_search_form_textfield').bind('keydown click', function(){
 		if ($('.in2snippets_search_form_textfield').hasClass('initial')) {
 			$('.in2snippets_search_form_textfield').val('');
 			$('.in2snippets_search_form_textfield').removeClass('initial');
 		}
 	});
-
+	
+	// deleting the default value if nothing was entered but the submit button was clicked
+	$('form.in2snippets_search_form').submit(function(){
+		if ($('.in2snippets_search_form_textfield').hasClass('initial')) {
+			$('.in2snippets_search_form_textfield').val('');
+			$('.in2snippets_search_form_textfield').removeClass('initial');
+		}
+	});
 	
 	var votesCalc = $('input#hiddenVotesCalc').val();
 	var votesCalcRounded = Math.round(votesCalc);
@@ -25,6 +32,7 @@ jQuery(document).ready(function() {
 	in2snippets_stars_mouseover();
 	in2snippets_stars_mouseout(votesCalcRounded);
 	
+	// deleting all characters after the 255th | !!!!!!!!!!! TODO !!!!!!!!!!!
 	$('.in2snippets_comment_new_form_textarea').live('keyup', function(){
 		var commentText = $('.in2snippets_comment_new_form_textarea').val();
 		var newCommentText = commentText.substr(0, 255);
