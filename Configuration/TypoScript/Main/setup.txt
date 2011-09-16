@@ -83,5 +83,6 @@ lib.detailLink {
 		typolink.additionalParams.cObject = TEXT
 		typolink.additionalParams.cObject.wrap = &tx_in2snippets_pi1[snippet]=|&tx_in2snippets_pi1[action]=detail
 		typolink.additionalParams.cObject.field = uid
+		typolink.useCacheHash = 1
 	}
 }
