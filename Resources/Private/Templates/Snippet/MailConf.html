@@ -1,0 +1,12 @@
+<div>
+	<p>
+		The snippet was successfully sent to {email}.
+	</p>
+	<p>
+		Your Text:<br />
+		<f:format.nl2br>{text}</f:format.nl2br>
+	</p>
+	<p>
+		Snippet: <f:link.action absolute="1" arguments="{snippet : snippet}" extensionName="in2snippets" pluginName="pi1" controller="Snippet" action="detail">{snippet.title}</f:link.action>
+	</p>
+</div>

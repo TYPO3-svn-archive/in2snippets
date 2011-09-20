@@ -1,0 +1,16 @@
+plugin.tx_in2snippets {
+	settings {
+		### RSS-Configuration ###
+		# cat=plugin.tx_in2snippets//0200; type=string; label=RSS Title: Title for RSS-Feed
+		rss.title = in2snippets
+
+		# cat=plugin.tx_in2snippets//0210; type=string; label=RSS BaseUrl: BaseUrl for RSS-Feed
+		rss.baseurl = http://www.in2code.de
+
+		# cat=plugin.tx_in2snippets//0220; type=string; label=RSS Description: Description for RSS-Feed
+		rss.description = in2code.de - wir leben TYPO3
+
+		# cat=plugin.tx_in2snippets//0230; type=string; label=RSS Language: Language for RSS-Feed
+		rss.language = de
+	}
+}
