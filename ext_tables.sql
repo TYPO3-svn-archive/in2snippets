@@ -51,7 +51,7 @@ CREATE TABLE tx_in2snippets_domain_model_snippet (
 	comments int(11) unsigned DEFAULT '0' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 	codes int(11) unsigned DEFAULT '0' NOT NULL,
-	votes_calc double(11,2) DEFAULT '0' NOT NULL,
+	votes_calc double(11,2) DEFAULT '0.00' NOT NULL,
 	votes_count int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
