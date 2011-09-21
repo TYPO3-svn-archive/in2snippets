@@ -80,7 +80,7 @@ class snippetsEidComment {
 		//$this->bootstrap->cObj = t3lib_div::makeInstance('tslib_cObj'); // example for cObj instance
 
 		$userObj = tslib_eidtools::initFeUser();
-		$temp_TSFEclassName = t3lib_div::makeInstance('tslib_fe');
+		$temp_TSFEclassName = t3lib_div::makeInstance('tslib_fe', $TYPO3_CONF_VARS, 32, 0);
 		$GLOBALS['TSFE'] = new $temp_TSFEclassName($TYPO3_CONF_VARS, 32, 0, true);
 		$GLOBALS['TSFE']->connectToDB();
 		$GLOBALS['TSFE']->fe_user = $userObj;
