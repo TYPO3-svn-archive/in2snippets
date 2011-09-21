@@ -66,8 +66,9 @@ class Tx_In2snippets_Domain_Repository_SnippetRepository extends Tx_Extbase_Pers
 				$or[] = $query->like('tags', '%' . $snippetSearchVars[$i] . '%');
 				$or[] = $query->like('description', '%' . $snippetSearchVars[$i] . '%');
 				$or[] = $query->like('codes.code', '%' . $snippetSearchVars[$i] . '%');
+				$or[] = $query->like('codes.links', '%' . $snippetSearchVars[$i] . '%');
 				$or[] = $query->like('categories.title', '%' . $snippetSearchVars[$i] . '%');
-				$or[] = $query->like('comments.text', '%' . $snippetSearchVars[$i] . '%');
+				//$or[] = $query->like('comments.text', '%' . $snippetSearchVars[$i] . '%');
 				$and[] = $query->logicalOr($or); // create where object with OR
 			}
 		}
@@ -104,8 +105,9 @@ class Tx_In2snippets_Domain_Repository_SnippetRepository extends Tx_Extbase_Pers
 				$or[] = $query->like('tags', '%' . $searchterms[$i] . '%');
 				$or[] = $query->like('description', '%' . $searchterms[$i] . '%');
 				$or[] = $query->like('codes.code', '%' . $searchterms[$i] . '%');
+				$or[] = $query->like('codes.links', '%' . $snippetSearchVars[$i] . '%');
 				$or[] = $query->like('categories.title', '%' . $searchterms[$i] . '%');
-				$or[] = $query->like('comments.text', '%' . $searchterms[$i] . '%');
+				//$or[] = $query->like('comments.text', '%' . $searchterms[$i] . '%');
 				$and[] = $query->logicalOr($or); // create where object with OR
 			}
 		}

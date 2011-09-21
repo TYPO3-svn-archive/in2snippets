@@ -27,12 +27,6 @@ Template for Detail Output
 				</div>
 			</div>
 
-
-
-
-
-
-
 			<div class="in2snippets_detail_snippet_creator">
 				<f:if condition="{snippet.cruserId.realName}">
 					<f:then>
@@ -59,7 +53,18 @@ Template for Detail Output
 							<div class="in2snippets_detail_snippet_codetype_{code.type}"></div>
 						</div>
 						<div class="in2snippets_detail_snippet_code">
-							<pre class="code"><code class="{code.faketype}"><pre class="somecode">{code.code}</pre></code></pre>
+							<f:if condition="{0: code.faketype} == {0: 'links'}">
+								<f:then>
+									<ul>
+										<f:for each="{code.links}" as="link">
+											<li><f:link.external uri="{link}" target="_blank">{link}</f:link.external></li>
+										</f:for>
+									</ul>
+								</f:then>
+								<f:else>
+									<pre class="code"><code class="{code.faketype}"><pre class="somecode">{code.code}</pre></code></pre>
+								</f:else>
+							</f:if>
 						</div>
 					</div>
 				</f:for>
@@ -156,7 +161,6 @@ Template for Detail Output
 									<f:if condition="{comment.www}">
 										<f:then>
 											<f:link.external uri="{comment.www}" target="_blank">{comment.creator}</f:link.external>
-
 										</f:then>
 										<f:else>
 											{comment.creator}

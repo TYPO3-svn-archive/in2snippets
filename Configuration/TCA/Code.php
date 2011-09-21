@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_in2snippets_domain_model_code'] = array(
 	'ctrl' => $TCA['tx_in2snippets_domain_model_code']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, code',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, type, code, links',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, type, code,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, type, code, links,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -108,11 +108,12 @@ $TCA['tx_in2snippets_domain_model_code'] = array(
 					array('MySQL', 'sql'),
 					array('Plain', 'plain'),
 					array('CSS', 'css'),
+					array('Links', 'links'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
 				'eval' => 'required'
-			),
+			)
 		),
 		'code' => array(
 			'exclude' => 0,
@@ -120,9 +121,20 @@ $TCA['tx_in2snippets_domain_model_code'] = array(
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
-				'rows' => 15,
-				'eval' => 'trim,required'
+				'rows' => 15
 			),
+			'displayCond' => 'FIELD:type:!=:links'
+		),
+		'links' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:in2snippets/Resources/Private/Language/locallang_db.xml:tx_in2snippets_domain_model_code.links',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15
+			),
+			'displayCond' => 'FIELD:type:=:links',
+			'requestUpdate' => 'type'
 		),
 		'snippet' => array(
 			'config' => array(

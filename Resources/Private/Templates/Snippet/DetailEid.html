@@ -53,7 +53,19 @@ Template for Detail Output
 							<div class="in2snippets_detail_snippet_codetype_{code.type}"></div>
 						</div>
 						<div class="in2snippets_detail_snippet_code">
-							<pre class="code"><code class="{code.faketype}"><pre class="somecode">{code.code}</pre></code></pre>
+							<b>{code.faketype}</b>
+							<f:if condition="{0: code.faketype} == {0: 'links'}">
+								<f:then>
+									<ul>
+										<f:for each="{code.links}" as="link">
+											<li><f:link.external uri="{link}" target="_blank">{link}</f:link.external></li>
+										</f:for>
+									</ul>
+								</f:then>
+								<f:else>
+									<pre class="code"><code class="{code.faketype}"><pre class="somecode">{code.code}</pre></code></pre>
+								</f:else>
+							</f:if>
 						</div>
 					</div>
 				</f:for>

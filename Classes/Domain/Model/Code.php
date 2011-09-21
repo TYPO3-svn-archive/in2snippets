@@ -40,13 +40,20 @@ class Tx_In2snippets_Domain_Model_Code extends Tx_Extbase_DomainObject_AbstractE
 	 * @validate NotEmpty
 	 */
 	protected $type;
+	
 	/**
 	 * code
 	 *
 	 * @var string
-	 * @validate NotEmpty
 	 */
 	protected $code;
+	
+	/**
+	 * links
+	 *
+	 * @var string
+	 */
+	protected $links;
 
 	/**
 	 * __construct
@@ -109,6 +116,25 @@ class Tx_In2snippets_Domain_Model_Code extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function setCode($code) {
 		$this->code = $code;
+	}
+
+	/**
+	 * Returns the links
+	 *
+	 * @return string $links
+	 */
+	public function getLinks() {
+		return t3lib_div::trimExplode("\n", $this->links, 1);
+	}
+
+	/**
+	 * Sets the links
+	 *
+	 * @param string $links
+	 * @return void
+	 */
+	public function setLinks($links) {
+		$this->links = $links;
 	}
 
 }

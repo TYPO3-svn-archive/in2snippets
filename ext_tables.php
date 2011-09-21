@@ -128,7 +128,8 @@ $TCA['tx_in2snippets_domain_model_code'] = array(
 			'endtime' => 'endtime',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Code.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_in2snippets_domain_model_code.gif'
+		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_in2snippets_domain_model_code.gif',
+		'requestUpdate' => 'type'
 	),
 );
 
