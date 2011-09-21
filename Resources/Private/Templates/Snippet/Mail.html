@@ -1,0 +1,11 @@
+<div>
+	<p>
+		{emailOwn} sent you this snippet:
+	</p>
+	<p>
+		<f:format.nl2br>{text}</f:format.nl2br>
+	</p>
+	<p>
+		Link: <f:link.action absolute="1" arguments="{snippet : snippet}" extensionName="in2snippets" pluginName="pi1" controller="Snippet" action="detail">{snippet.title}</f:link.action>
+	</p>
+</div>

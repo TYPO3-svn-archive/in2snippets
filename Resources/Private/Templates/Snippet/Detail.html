@@ -1,0 +1,185 @@
+<f:layout name="Default" />
+
+Template for Detail Output
+
+{snippet} Snippet Object
+
+<f:section name="main">
+	<div class="in2snippets_detail">
+		<div class="in2snippets_flashmessages">
+			<f:flashMessages />
+		</div>
+		<div class="in2snippets_detail_snippet">
+			<h3 class="in2snippets_detail_snippet_title">
+				{snippet.title}
+			</h3>
+			
+			<div class="in2snippets_detail_snippet_tags">
+				<div class="in2snippets_detail_snippet_tags_label">
+					<f:translate key="tx_in2snippets_domain_model_snippet.tags" />:
+				</div>
+				<div class="in2snippets_detail_snippet_tags_list">
+					<f:for each="{snippet.tagsarray}" as="tag">
+						<span class="in2snippets_detail_snippet_tags_list_tag">
+							<f:link.action action="list" arguments="{snippetSearch : tag}">{tag}</f:link.action>
+						</span>
+					</f:for>
+				</div>
+			</div>
+
+			<div class="in2snippets_detail_snippet_creator">
+				<f:if condition="{snippet.cruserId.realName}">
+					<f:then>
+						{snippet.cruserId.realName}
+					</f:then>
+					<f:else>
+						{snippet.cruserId.username}
+					</f:else>
+				</f:if>
+				<span>
+					{snippet.crdate -> f:format.date(format:'d.m.Y - H:i')}
+				</span>
+			</div>
+			
+			<div class="in2snippets_detail_snippet_description">
+				<f:format.html parseFuncTSPath="lib.parseFunc">{snippet.description}</f:format.html>
+			</div>
+
+			<div class="in2snippets_detail_snippet_codes">
+				
+				<f:for each="{snippet.codes}" as="code">
+					<div class="in2snippets_detail_snippet_code_outer">
+						<div class="in2snippets_detail_snippet_code_header">
+							<div class="in2snippets_detail_snippet_codetype_{code.type}"></div>
+						</div>
+						<div class="in2snippets_detail_snippet_code">
+							<f:if condition="{0: code.faketype} == {0: 'links'}">
+								<f:then>
+									<ul>
+										<f:for each="{code.links}" as="link">
+											<li><f:link.external uri="{link}" target="_blank">{link}</f:link.external></li>
+										</f:for>
+									</ul>
+								</f:then>
+								<f:else>
+									<pre class="code"><code class="{code.faketype}"><pre class="somecode">{code.code}</pre></code></pre>
+								</f:else>
+							</f:if>
+						</div>
+					</div>
+				</f:for>
+			</div>
+			
+			<div class="in2snippets_detail_snippet_options">
+				<div class="in2snippets_detail_snippet_options_newcomment">
+					<f:translate key="tx_in2snippets_detail_addnewcomment" />
+				</div>
+				<div class="in2snippets_detail_snippet_options_rate">
+					<f:translate key="tx_in2snippets_detail_rate" />
+				</div>
+				<div class="in2snippets_detail_snippet_options_tipafriend">
+					<f:translate key="tx_in2snippets_detail_tipafriend" />
+				</div>
+				<div class="in2snippets_detail_snippet_options_share">
+					<f:translate key="tx_in2snippets_detail_share" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="in2snippets_infocontainer"></div>
+			<div class="in2snippets_detail_snippet_options_popup_container">
+				<div class="in2snippets_detail_snippet_options_newcomment_form">
+					<f:form action="create" controller="Comment" name="newComment" object="{newComment}">
+						<div class="in2snippets_comment_new_form_comment">
+							<label for="in2snippets_comment_new_form_comment"><f:translate key="tx_in2snippets_comment" />*:</label>
+							<f:form.textarea rows="5" cols="30" class="in2snippets_comment_new_form_textarea in2snippets_form_required" property="text" id="in2snippets_comment_new_form_comment" />
+						</div>
+						<div class="in2snippets_comment_new_form_name">
+							<label for="in2snippets_comment_new_form_name"><f:translate key="tx_in2snippets_name" />*:</label> 
+							<f:form.textfield property="creator" id="in2snippets_comment_new_form_name" class="in2snippets_form_required"/>
+						</div>
+						<div class="in2snippets_comment_new_form_www">
+							<label for="in2snippets_comment_new_form_www"><f:translate key="tx_in2snippets_www" />:</label>
+							<f:form.textfield property="www" id="in2snippets_comment_new_form_www" />
+						</div>
+						<f:form.submit class="in2snippets_submit" value="{f:translate(key: 'tx_in2snippets_form_submit')}" />
+						<f:form.hidden name="snippet" value="{snippet}" />
+						<div class="clear"></div>
+					</f:form>
+					<div class="clear"></div>
+				</div>
+				<div class="in2snippets_detail_snippet_options_share_popup">
+					<div class="in2snippets_detail_snippet_options_share_popup_inner">
+						<div class="in2snippets_detail_snippet_options_share_fb">
+							<div id="fb-root"></div>
+							<iframe src="http://www.facebook.com/plugins/like.php?app_id=272767352752549&amp;href={snippet -> f:cObject(typoscriptObjectPath:'lib.detailLink')}&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=32" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:90px;" allowTransparency="true"></iframe>
+						</div>
+						<div class="in2snippets_detail_snippet_options_share_twitter">
+							<a href="http://twitter.com/share" class="twitter-share-button" data-text="{snippet.title}" data-count="horizontal" data-url="{snippet -> f:cObject(typoscriptObjectPath:'lib.detailLink')}">Tweet</a>
+							<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="in2snippets_detail_snippet_options_tipafriend_form">
+					<f:form action="sendMail">
+						<div class="in2snippets_detail_snippet_options_tipafriend_form_text">
+							<label for="in2snippets_detail_snippet_options_tipafriend_form_text"><f:translate key="tx_in2snippets_text" />*:</label>
+							<f:form.textarea name="text" rows="5" cols="30" id="in2snippets_detail_snippet_options_tipafriend_form_text" class="in2snippets_form_required" />
+						</div>
+						<div class="in2snippets_detail_snippet_options_tipafriend_form_mail">
+							<label for="in2snippets_detail_snippet_options_tipafriend_form_mail"><f:translate key="tx_in2snippets_mail_recipient" />*:</label>
+							<f:form.textfield name="mail" id="in2snippets_detail_snippet_options_tipafriend_form_mail" class="in2snippets_form_required in2snippets_form_mail" />
+						</div>
+						<div class="in2snippets_detail_snippet_options_tipafriend_form_mail_own">
+							<label for="in2snippets_detail_snippet_options_tipafriend_form_mail_own"><f:translate key="tx_in2snippets_mail_own" />*:</label>
+							<f:form.textfield name="mailOwn" id="in2snippets_detail_snippet_options_tipafriend_form_mail_own" class="in2snippets_form_required in2snippets_form_mail" />
+						</div>
+						<f:form.hidden name="snippet" value="{snippet}" />
+						<f:form.submit class="in2snippets_submit" value="{f:translate(key: 'tx_in2snippets_form_submit')}" />
+						<div class="clear"></div>
+					</f:form>
+				</div>
+				<div class="in2snippets_detail_snippet_options_votes_popup">
+					<div class="in2snippets_detail_snippet_options_votes_popup_stars">
+						<f:link.action action="update" arguments="{snippet : snippet}" additionalParams="{tx_in2snippets_pi1 : {votenum : 1}}"><f:image src="EXT:in2snippets/Resources/Public/Icons/Stuff/star_normal.png" alt="star" class="in2snippets_detail_snippet_options_votes_popup_stars_star" /></f:link.action>
+						<f:link.action action="update" arguments="{snippet : snippet}" additionalParams="{tx_in2snippets_pi1 : {votenum : 2}}"><f:image src="EXT:in2snippets/Resources/Public/Icons/Stuff/star_normal.png" alt="star" class="in2snippets_detail_snippet_options_votes_popup_stars_star" /></f:link.action>
+						<f:link.action action="update" arguments="{snippet : snippet}" additionalParams="{tx_in2snippets_pi1 : {votenum : 3}}"><f:image src="EXT:in2snippets/Resources/Public/Icons/Stuff/star_normal.png" alt="star" class="in2snippets_detail_snippet_options_votes_popup_stars_star" /></f:link.action>
+						<f:link.action action="update" arguments="{snippet : snippet}" additionalParams="{tx_in2snippets_pi1 : {votenum : 4}}"><f:image src="EXT:in2snippets/Resources/Public/Icons/Stuff/star_normal.png" alt="star" class="in2snippets_detail_snippet_options_votes_popup_stars_star" /></f:link.action>
+						<f:link.action action="update" arguments="{snippet : snippet}" additionalParams="{tx_in2snippets_pi1 : {votenum : 5}}"><f:image src="EXT:in2snippets/Resources/Public/Icons/Stuff/star_normal.png" alt="star" class="in2snippets_detail_snippet_options_votes_popup_stars_star" /></f:link.action>
+						<span class="in2snippets_detail_snippet_options_votes_popup_stars_calc">({snippet.votesCalc})</span>
+						<f:form.hidden id="hiddenVotesCalc" name="votesCalc" value="{snippet.votesCalc}" />
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="in2snippets_detail_snippet_comments">
+				<f:for each="{snippet.comments}" as="comment">
+					<div class="in2snippets_detail_snippet_comment_outer">
+						<div class="in2snippets_detail_snippet_comment_header">
+							<div class="in2snippets_detail_snippet_comment_headinfo">
+								<div class="in2snippets_detail_snippet_comment_info_creator">
+									<f:if condition="{comment.www}">
+										<f:then>
+											<f:link.external uri="{comment.www}" target="_blank">{comment.creator}</f:link.external>
+										</f:then>
+										<f:else>
+											{comment.creator}
+										</f:else>
+									</f:if>
+								</div>
+								<div class="in2snippets_detail_snippet_comment_info_date">
+									{comment.crdate -> f:format.date(format:'d.m.Y - H:i')}
+								</div>
+							</div>
+						</div>
+						<div class="in2snippets_detail_snippet_comment">
+							<div class="in2snippets_detail_snippet_comment_text">
+								<f:format.nl2br>{comment.text}</f:format.nl2br>
+							</div>
+						</div>
+					</div>
+				</f:for>
+			</div>
+		</div>
+	</div>
+</f:section>

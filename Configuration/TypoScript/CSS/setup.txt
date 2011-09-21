@@ -1,0 +1,1 @@
+page.includeCSS.in2snippets_default_css = EXT:in2snippets/Resources/Public/CSS/in2snippets_default.css
