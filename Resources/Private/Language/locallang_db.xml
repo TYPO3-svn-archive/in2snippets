@@ -22,14 +22,15 @@
 			<label index="tx_in2snippets_domain_model_code">Code</label>
 			<label index="tx_in2snippets_domain_model_code.type">Type</label>
 			<label index="tx_in2snippets_domain_model_code.code">Code</label>
+			<label index="tx_in2snippets_domain_model_code.links">Links (One link per line)</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_count">Votes count</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_calc">Voting</label>
 			<label index="tx_in2snippets_domain_model_comment.www">Website</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="tx_in2snippets_domain_model_category">Eine Snippet Kategorie</label>
+			<label index="tx_in2snippets_domain_model_category">Kategorie</label>
 			<label index="tx_in2snippets_domain_model_category.title">Titel</label>
-			<label index="tx_in2snippets_domain_model_snippet">Ein Snippet</label>
+			<label index="tx_in2snippets_domain_model_snippet">Snippet</label>
 			<label index="tx_in2snippets_domain_model_snippet.title">Titel</label>
 			<label index="tx_in2snippets_domain_model_snippet.description">Beschreibung</label>
 			<label index="tx_in2snippets_domain_model_snippet.tags">Tags</label>
@@ -39,12 +40,13 @@
 			<label index="tx_in2snippets_domain_model_snippet.cruser_id">Ersteller</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_count">Anzahl der Votes</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_calc">Ergebnis der Votes</label>
-			<label index="tx_in2snippets_domain_model_comment">Das Kommentar-Objekt des Snippets</label>
+			<label index="tx_in2snippets_domain_model_comment">Kommentar</label>
 			<label index="tx_in2snippets_domain_model_comment.creator">Verfasser</label>
 			<label index="tx_in2snippets_domain_model_comment.text">Text</label>
-			<label index="tx_in2snippets_domain_model_code">Die Code-Felder des Snippets</label>
+			<label index="tx_in2snippets_domain_model_code">Code</label>
 			<label index="tx_in2snippets_domain_model_code.type">Typ</label>
 			<label index="tx_in2snippets_domain_model_code.code">Code</label>
+			<label index="tx_in2snippets_domain_model_code.links">Links (Ein Link pro Zeile)</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_count">Anzahl der Votes</label>
 			<label index="tx_in2snippets_domain_model_snippet.votes_calc">Bewertung</label>
 			<label index="tx_in2snippets_domain_model_comment.www">Webseite</label>
